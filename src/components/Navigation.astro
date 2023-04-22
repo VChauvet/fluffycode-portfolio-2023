@@ -1,0 +1,138 @@
+---
+type NavElement = {
+  name: string;
+  anchor: string;
+  link?: boolean;
+};
+
+export interface props {
+    MenuElement: NavElement[]
+}
+
+const { MenuElement } = Astro.props as props;
+---
+<div id="navigation" class="navigation wrapper w-28 left-0 -translate-x-4 sm:-translate-x-24 -translate-y-10 absolute z-20 sm:z-0">
+    <div class="deco-border-1 w-full h-full -translate-x-3 rounded-3xl rounded-tr-none absolute border-emerald-green border-4"></div>
+    <div class="outer-border deco-border-2 custom-gradient w-full h-full -translate-y-3 rounded-3xl rounded-tr-none absolute z-0"></div>
+    <div class="outer-border w-full h-full rounded-3xl rounded-tr-none absolute border-sun-gold border-[3px]"></div>
+    <div class="menu-list max-w-full max-h-full overflow-hidden relative">
+        <div class="burger-menu-trigger sm:hidden absolute w-full h-12 cursor-pointer z-40"></div>
+        <div class="w-8 h-8 sm:hidden pointer-events-none">
+            <div class="menu-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="pl-4 py-6 pb-10 mt-4 list-none">
+        {MenuElement.map(item => (
+            <li class="">
+              <a class="text-sun-gold block w-full mb-1 hover:font-extrabold hover:text-white" href={`${!item.link ? '#':''}${item.anchor}`}>{item.name}</a>  
+            </li>
+        ))}
+        </ul>
+    </div>
+</div>
+
+<style>
+    .menu-icon {
+        @apply absolute flex flex-col justify-between w-6 h-4 cursor-pointer z-50;
+        position: absolute;
+        top: 16px;
+        left:14px;
+    }
+    .menu-icon span {
+        @apply bg-sun-gold w-full block h-0.5;
+        transition: transform 0.3s ease;
+    }
+    .navigation .custom-gradient {
+       background: radial-gradient(ellipse 200px 900px at 120% 20%, #FFCE50 -20%, #288B76 36%, #2A5B65);
+    }
+    .navigation, .deco-border-1, .deco-border-2, .menu-list {
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1.1), max-height 0.3s ease, max-width 0.3s ease;
+    }
+    @media only screen and (max-width: 639px) {
+        #navigation, #navigation .menu-list{
+            width: 100%;
+            max-height: 50px;
+            max-width: 50px;
+        }
+        #navigation.open, #navigation.open .menu-list{
+            max-height: 200px;
+            max-width: 7rem;
+        }
+        #navigation:not(.open) .deco-border-1, #navigation:not(.open) .deco-border-2{
+            transform: translate(0rem);
+        }
+        #navigation.open .menu-icon span:first-child {
+            transform: rotate(45deg) translate(4px, 4px);
+        }
+
+        #navigation.open .menu-icon span:nth-child(2) {
+            opacity: 0;
+        }
+
+        #navigation.open .menu-icon span:last-child {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+    } 
+</style>
+
+<script>
+    const container = document.querySelector('.navigation') as HTMLElement;
+    const containerOffset = container.offsetTop;
+    const containerHeight = container.offsetHeight;
+    const containerWidth = container.offsetWidth;
+
+    let translateXValue = -96;
+    let scrollPosition = 0;
+
+    
+    
+    
+    window.addEventListener('resize', updateVariable);
+    
+    function updateVariable() {
+        if (window.innerWidth < 640) {
+            translateXValue = -16;
+        } else {
+            translateXValue = -96;
+        }
+        if (scrollPosition >= containerOffset && scrollPosition > 10) {
+            container.style.transform = `translateY(${scrollPosition - containerOffset}px) translateX(${translateXValue}px)`;
+        } else {
+            container.style.transform = `translateY(-2.5rem) translateX(${translateXValue}px)`;
+        }
+    }
+
+    updateVariable();
+
+    window.addEventListener('scroll', () => {
+        scrollPosition = window.pageYOffset;
+
+        if (scrollPosition >= containerOffset && scrollPosition > 10) {
+            container.style.transform = `translateY(${scrollPosition - containerOffset}px) translateX(${translateXValue}px)`;
+        } else {
+            container.style.transform = `translateY(-2.5rem) translateX(${translateXValue}px)`;
+        }
+    });
+
+
+
+</script>
+
+<script is:inline>
+    //popUp trigger
+    document.addEventListener("DOMContentLoaded", function() {
+        const menuTriggers = document.querySelectorAll("[class^='burger-menu-trigger']");
+
+
+        menuTriggers.forEach((trigger) => {
+            trigger.addEventListener("click", function() {
+                const popup = document.getElementById(`navigation`);
+                popup.classList.toggle("open");
+            });
+        });
+    });
+</script>

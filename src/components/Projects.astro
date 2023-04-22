@@ -1,0 +1,47 @@
+---
+import {Content, frontmatter} from '../content/Intro.md';
+import ProjectCard from '../components/ProjectCard.astro';
+
+export interface props {
+    anchor?: string,
+}
+
+const projects = await Astro.glob('../content/projects/*.md');
+const nonDraftProjects = projects.filter((post) => !post.frontmatter.draft);
+
+const { anchor } = Astro.props as props;
+
+let projectId = 0;
+---
+<div id={anchor&&`${anchor}`} class="relative">
+    <h2>Projects</h2>
+    <div class="flex w-full justify-center">
+        <div class="grid gap-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {nonDraftProjects.map(project => (
+                <ProjectCard
+                    id={projectId++}
+                    project={project}
+                />
+            ))}
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    //popUp trigger
+    document.addEventListener("DOMContentLoaded", function() {
+        const popupTriggers = document.querySelectorAll("[class^='popupTrigger-']");
+
+        const regex = /^popupTrigger-(\d+)$/;
+
+        popupTriggers.forEach((trigger) => {
+            const triggerClass = Array.from(trigger.classList).find(className => regex.test(className));
+            const triggerNumber = triggerClass.match(regex)[1];
+
+            trigger.addEventListener("click", function() {
+                const popup = document.getElementById(`popup-${triggerNumber}`);
+                popup.classList.toggle("showPopup");
+            });
+        });
+    });
+</script>

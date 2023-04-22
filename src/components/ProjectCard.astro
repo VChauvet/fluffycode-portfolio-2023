@@ -1,0 +1,108 @@
+---
+export interface props {
+    title?: string;
+    description?: string;
+    url?: string;
+    thumbnail?: string;
+    content?: string;
+    id: string;
+    project: object;
+}
+
+const { project, id } = Astro.props as props;
+---
+<div class={`popupTrigger-${id} card-container w-64 sm:w-48 h-64 relative`}>
+    <div class="card-shadow w-full h-full top-0 absolute transition-all ease-in-out duration-200 blur-0 bg-emerald-green-dark shadow-inner rounded-md"></div>
+
+    
+    <div class="card card-transition w-full h-full">
+        <div class="card-front w-full h-full absolute bg-emerald-green rounded-md border shadow-xl border-sun-gold overflow-hidden">
+            <div class="w-full h-full absolute" 
+            style={`background-color: ${project.frontmatter.color}; background: linear-gradient(169deg, ${project.frontmatter.color} 20%, ${project.frontmatter.color_secondary} 80%);`}></div>
+            <div class="card-bg w-full h-full absolute" style={`background-image: url(${project.frontmatter.thumbnail})`}></div>
+            <div class="absolute px-4 pr-14 pt-8 object-contain w-full h-14 flex flex-col justify-center items-start">
+                <img class="max-h-14 object-contain flex-1" src={project.frontmatter.logo} />
+            </div>
+            
+            <div class="sm:hidden mt-24 ml-2 text-lg w-full text-[#00202ad4] font-bold drop-shadow-sm shadow-white whitespace-break-spaces">{`${project.frontmatter.description.replace(/, /g, '\n')}`}</div>
+
+        </div>
+        <div class="card-reveal card-transition opacity-0 w-full h-full absolute overflow-hidden bg-emerald-green rounded-md border-2 border-sun-gold">
+            <div class="mt-6 ml-2 text-2xl text-sun-gold drop-shadow-md">{project.frontmatter.title}</div>
+            <div class="mt-6 ml-2 text-base w-full text-white drop-shadow-md whitespace-break-spaces">{`${project.frontmatter.description.replace(/, /g, '\n')}`}</div>
+            <div class="right-2 bottom-2 absolute text-sun-gold hover:text-white font-thin border-sun-gold p-1 px-4 rounded-full border-[1px] drop-shadow-lg bg-emerald-green">
+                Mehr...
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+<div id={`popup-${id}`} class="card-popup transition-all fixed left-0 top-0 w-screen h-screen z-50">
+    <div class="w-full h-full relative bg-emerald-green-dark/75 p-8 sm:p-12 flex flex-col flex-1 justify-center items-center">
+        <div class={`popupTrigger-${id} w-full h-full absolute`}></div>
+
+        <div class="w-full max-w-2xl h-full max-h-[40rem] sm:max-h-[60rem] pt-8 relative custom-gradient bg-emerald-green rounded-3xl border shadow-2xl border-sun-gold">
+            <div class={`popupTrigger-${id} absolute w-14 h-14 right-1 top-1 text-sun-gold hover:text-white`}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>                  
+            </div>
+            <div class="card-content -mt-4 px-4 drop-shadow-md pointer-events-none">
+                <h1>{project.frontmatter.title}</h1>
+            </div>
+            <div class="card-content px-4 top-14 bottom-12 absolute drop-shadow-md overflow-y-auto">
+                <project.Content />
+            </div>
+            <div class="absolute bottom-[0.35rem] left-3 w-full text-xl font-thin text-sun-gold hover:text-white">
+                <a class="border-sun-gold p-1 px-4 rounded-full border-[1px] drop-shadow-lg bg-emerald-green" target="_blank" href={project.frontmatter.url}>Besuche {project.frontmatter.title}</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .card-transition {
+        transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+        display: block;
+    }
+    .card-bg {
+        background-position: center;
+        background-size: cover;
+        opacity: 30%;
+        mix-blend-mode: overlay;
+    } 
+    .card-container:hover .card {
+        transform: translate(-15px, -30px);
+    }
+    .card-reveal {
+        background-position: center;
+        background-size: contain;
+    }
+    .card-container:hover .card-reveal{
+        opacity: 100;
+    }
+    .card-container:hover .card-shadow{
+        filter: blur(6px);
+    }
+    .card-popup{
+        opacity: 0;
+        pointer-events: none;
+    }
+    .card-popup.showPopup{
+        opacity: 100;
+        pointer-events: all;
+
+    }
+    div[class^='popupTrigger-'] {
+        cursor: pointer;
+    }
+    .card-content {
+        @apply text-base text-white;
+    }
+
+    .custom-gradient {
+		background: radial-gradient(circle at center, #2A5B65, #288B76 80%, #FFCE50 220%);
+    }
+</style>
