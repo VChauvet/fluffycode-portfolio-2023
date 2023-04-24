@@ -16,8 +16,8 @@ const { MenuElement } = Astro.props as props;
     <div class="outer-border deco-border-2 custom-gradient w-full h-full -translate-y-3 rounded-3xl rounded-tr-none absolute z-0"></div>
     <div class="outer-border w-full h-full rounded-3xl rounded-tr-none absolute border-sun-gold border-[3px]"></div>
     <div class="menu-list max-w-full max-h-full overflow-hidden relative">
-        <div class="burger-menu-trigger sm:hidden absolute w-full h-12 cursor-pointer z-40"></div>
-        <div class="w-8 h-8 sm:hidden pointer-events-none">
+        <div class="burger-menu-trigger absolute w-full h-12 cursor-pointer z-40"></div>
+        <div class="w-8 h-8 pointer-events-none">
             <div class="menu-icon">
                 <span></span>
                 <span></span>
@@ -51,32 +51,29 @@ const { MenuElement } = Astro.props as props;
     .navigation, .deco-border-1, .deco-border-2, .menu-list {
         transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1.1), max-height 0.3s ease, max-width 0.3s ease;
     }
-    @media only screen and (max-width: 639px) {
-        #navigation, #navigation .menu-list{
-            width: 100%;
-            max-height: 50px;
-            max-width: 50px;
-        }
-        #navigation.open, #navigation.open .menu-list{
-            max-height: 200px;
-            max-width: 7rem;
-        }
-        #navigation:not(.open) .deco-border-1, #navigation:not(.open) .deco-border-2{
-            transform: translate(0rem);
-        }
-        #navigation.open .menu-icon span:first-child {
-            transform: rotate(45deg) translate(4px, 4px);
-        }
+    #navigation, #navigation .menu-list{
+        width: 100%;
+        max-height: 50px;
+        max-width: 50px;
+    }
+    #navigation.open, #navigation.open .menu-list{
+        max-height: 200px;
+        max-width: 7rem;
+    }
+    #navigation:not(.open) .deco-border-1, #navigation:not(.open) .deco-border-2{
+        transform: translate(0rem);
+    }
+    #navigation.open .menu-icon span:first-child {
+        transform: rotate(45deg) translate(4px, 4px);
+    }
 
-        #navigation.open .menu-icon span:nth-child(2) {
-            opacity: 0;
-        }
+    #navigation.open .menu-icon span:nth-child(2) {
+        opacity: 0;
+    }
 
-        #navigation.open .menu-icon span:last-child {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-    } 
+    #navigation.open .menu-icon span:last-child {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
 </style>
 
 <script>
