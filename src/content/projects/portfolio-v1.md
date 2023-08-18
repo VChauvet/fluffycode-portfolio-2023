@@ -10,6 +10,7 @@ thumbnail: /images/portfolio_cover.jpg
 category: experiment
 ---
 Dieses Portfolio ist in Astro und React geschrieben.\
+Astro ermöglicht performantes statisches Rendering und SSR von Komponenten (z.B. React, Vue) ohne auf Flexibilität zu verzichten.\
 \
 Öffentliches [Git Repository](https://github.com/VChauvet/fluffycode-portfolio-2023) \
 \
