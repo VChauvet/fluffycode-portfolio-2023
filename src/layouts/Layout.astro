@@ -18,7 +18,7 @@ const { title } = Astro.props;
 	<body>
 		<main class="min-h-screen overflow-x-hidden pl-4 sm:pl-24 pb-16">
 			<div class="mx-auto max-w-6xl mt-8 relative rounded-lg bg-transparent">
-				<div class="panel-gradient w-screen h-full absolute top-0 rounded-3xl z-0"></div>
+				<div class="panel-gradient opacity-60 w-screen h-full absolute top-0 rounded-3xl z-0"></div>
 				<div class="w-screen h-full absolute top-0 rounded-3xl border-sun-gold border-[3px] pointer-events-none  z-10"></div>
 				<div class="panel-gradient w-full h-full absolute top-0 rounded-3xl border-emerald-green drop-shadow-lg border-[2px] pointer-events-none"></div>
 				<div class="px-8 py-8 relative">
@@ -84,6 +84,9 @@ const { title } = Astro.props;
         @apply rounded-[3px] w-full;
 		
     }
+	.card-content a {
+		@apply text-sun-gold hover:text-white underline;
+	}
 	.content strong {
 		@apply text-sun-gold;
 	}
