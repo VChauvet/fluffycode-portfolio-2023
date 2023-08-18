@@ -7,6 +7,7 @@ logo: /images/logo-doctormi.png
 color: '#e1e1e1'
 color_secondary: '#6c1130'
 thumbnail: /images/doctor-mi_1.jpg
+category: workproject
 ---
 In diesem Projekt gab es eine Vielzahl an Erweiterungen und stellen ein Soft-Relaunch dar.
 Die Steigerung der Marketingmassnahmen war umfangreich.\

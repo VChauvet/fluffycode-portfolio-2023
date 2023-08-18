@@ -7,6 +7,7 @@ logo: /images/logo-vsun.png
 color: '#837e8d'
 color_secondary: '#e1e1e1'
 thumbnail: /images/v-sun_1.jpg
+category: workproject
 ---
 Der Kunde benötigte ein Relaunch auf eine neue Version des Themes\
 inklusive bisheriger Anpassungen.

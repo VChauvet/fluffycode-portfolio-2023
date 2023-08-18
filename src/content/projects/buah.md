@@ -7,6 +7,7 @@ logo: /images/logo-buah.png
 color: '#e1e1e1'
 color_secondary: '#2fa139'
 thumbnail: /images/buah_1.jpg
+category: workproject
 ---
 Neues Design der Seite un d Umzug nach Shopify.\
 Besonders das Augenmerk auf Mobile stand im Fokus.\

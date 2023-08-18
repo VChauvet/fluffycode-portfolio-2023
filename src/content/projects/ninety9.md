@@ -7,6 +7,7 @@ logo: /images/logo-ninety9.svg
 color: '#b7ac9c'
 color_secondary: '#e1e1e1'
 thumbnail: /images/ninety9_1.jpg
+category: workproject
 ---
 Launch der Seite mit Anpassungen an kommerziellen Theme.\
 \

@@ -7,6 +7,7 @@ logo: /images/logo-bilou.png
 color: '#e1e1e1'
 color_secondary: '#d17f8d'
 thumbnail: /images/bilou_1.jpg
+category: workproject
 ---
 Der Kunde benötigte ein vollständigen Relaunch der Seite von Shopware zu Shopify.\
 Herausforderung war die übernahme des Designs, das identisch sein sollte und für den Endnutzer bei Relaunch nicht erkennbar sein.\

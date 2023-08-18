@@ -7,6 +7,7 @@ logo: /images/logo-junglueck.svg
 color: '#d3c4ae'
 color_secondary: '#617665'
 thumbnail: /images/junglueck_1.jpg
+category: workproject
 ---
 Stätige Erweiterung von Kern-Features. Rollouts und Übersetzungen die Stufenweise ausgeliefert werden sollten.\
 \
