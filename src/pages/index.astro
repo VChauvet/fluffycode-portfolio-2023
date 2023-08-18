@@ -20,7 +20,11 @@ const navElements: NavElement[] = [
     anchor: "skills",
   },
   {
-    name: "Projects",
+    name: "Private Projects",
+    anchor: "experiments",
+  },
+  {
+    name: "Work Projects",
     anchor: "projects",
   },
 ];
@@ -34,16 +38,18 @@ const anchorHeader = 'header';
 	<Navigation MenuElement={navElements}/>
 	<Header  anchor={navElements[0].anchor}/>
 	<Skills anchor={navElements[1].anchor}
-    title="Professional Skills"
+    title="Tech Skills"
     skills={[
-      "CSS",
       "JavaScript (ES6+)",
+      "CSS",
       "HTML5",
-      "Shopify-Liquid",
+      "React",
+      "Typescript",
       "GIT(Bash)",
       "Alpine.js",
       "GitLab",
       "NPM",
+      "Shopify",
       "Tailwind CSS",
       "ClickUp (PM Tool)",
     ]}
@@ -51,15 +57,16 @@ const anchorHeader = 'header';
   <Skills 
     title="Other Skills"
     skills={[
-      "C#",
       "Astro",
-      "React",
+      "C#",
       "Python",
       "Wordpress",
-
+      "Adobe Suite",
     ]}
+
 />
-	<Projects anchor={navElements[2].anchor}/>
+  <Projects title="Private Projects" category="experiment" anchor={navElements[2].anchor}/>
+	<Projects title="Shop Projects" category="workproject" anchor={navElements[3].anchor}/>
 </Layout>
 
 <style>
