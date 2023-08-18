@@ -3,23 +3,27 @@ import {Content, frontmatter} from '../content/Intro.md';
 import ProjectCard from '../components/ProjectCard.astro';
 
 export interface props {
+    category: string,
+    title?: string,
     anchor?: string,
 }
 
-const projects = await Astro.glob('../content/projects/*.md');
-const nonDraftProjects = projects.filter((post) => !post.frontmatter.draft);
+const { category, anchor, title } = Astro.props as props;
 
-const { anchor } = Astro.props as props;
+const projects = await Astro.glob('../content/projects/*.md');
+const nonDraftProjects = projects.filter((post) => (!post.frontmatter.draft && post.frontmatter.category == category) );
+
 
 let projectId = 0;
 ---
-<div id={anchor&&`${anchor}`} class="relative">
-    <h2>Projects</h2>
+<div id={anchor&&`${anchor}`} class=relative">
+    <h2>{title??'Projects'}</h2>
     <div class="flex w-full justify-center">
         <div class="grid gap-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {nonDraftProjects.map(project => (
                 <ProjectCard
                     id={projectId++}
+                    identifier={`${projectId}${category}`}
                     project={project}
                 />
             ))}
@@ -27,20 +31,20 @@ let projectId = 0;
     </div>
 </div>
 
-<script is:inline>
+<script>
     //popUp trigger
     document.addEventListener("DOMContentLoaded", function() {
         const popupTriggers = document.querySelectorAll("[class^='popupTrigger-']");
 
-        const regex = /^popupTrigger-(\d+)$/;
+        const regex = /^popupTrigger-(.+)$/;
 
         popupTriggers.forEach((trigger) => {
             const triggerClass = Array.from(trigger.classList).find(className => regex.test(className));
-            const triggerNumber = triggerClass.match(regex)[1];
+            const triggerNumber = triggerClass?.match(regex)?.slice(1);
 
             trigger.addEventListener("click", function() {
                 const popup = document.getElementById(`popup-${triggerNumber}`);
-                popup.classList.toggle("showPopup");
+                popup?.classList.toggle("showPopup");
             });
         });
     });
