@@ -9,7 +9,7 @@ color_secondary: '#96c2e9 '
 thumbnail: /images/weather_app_cover.jpg
 category: experiment
 ---
-Experiment einer einfachen Wetter-App mit API-Anbindung in React umgesetzt.\
+Experiment einer dynamischen Wetter-App mit API-Anbindung in React umgesetzt.\
 Wetterdaten werden durch [OpenWeather API](https://openweathermap.org/api) abgerufen.\
 \
 Öffentliches [Git Repository](https://github.com/VChauvet/react-weather-app) \
