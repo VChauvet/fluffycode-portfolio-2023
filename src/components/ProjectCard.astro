@@ -16,10 +16,10 @@ const { project, identifier } = Astro.props as props;
 
     
     <div class="card card-transition w-full h-full">
-        <div class="card-front w-full h-full absolute bg-emerald-green rounded-md border shadow-xl border-sun-gold overflow-hidentifierden">
+        <div class="card-front w-full h-full absolute bg-emerald-green rounded-md border shadow-xl border-sun-gold overflow-hidden">
             <div class="w-full h-full absolute" 
             style={`background-color: ${project.frontmatter.color}; background: linear-gradient(169deg, ${project.frontmatter.color} 20%, ${project.frontmatter.color_secondary} 80%);`}></div>
-            <div class="card-bg w-full h-full absolute" style={`background-image: url(${project.frontmatter.thumbnail})`}></div>
+            <div class="card-bg w-full h-full absolute overflow-hidden" style={`background-image: url(${project.frontmatter.thumbnail})`}></div>
             <div class="absolute px-4 pr-14 pt-8 object-contain w-full h-14 flex flex-col justify-center items-start">
                 <img class="max-h-14 object-contain flex-1" src={project.frontmatter.logo} />
             </div>
