@@ -18,7 +18,7 @@ let projectId = 0;
 ---
 <div id={anchor&&`${anchor}`} class=relative">
     <h2>{title??'Projects'}</h2>
-    <div class="flex w-full justify-center">
+    <div class="flex w-full justify-center md:justify-start">
         <div class="grid gap-6 gap-y-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {nonDraftProjects.map(project => (
                 <ProjectCard
